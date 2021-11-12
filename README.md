@@ -1,0 +1,2 @@
+# AI-DeptAssignment
+ BFS, DFS
