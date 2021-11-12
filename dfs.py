@@ -1,12 +1,16 @@
 # Using a Python dictionary to act as an adjacency list
-graph = {
-    '5' : ['3','7'],
-    '3' : ['2', '4'],
-    '7' : ['8'],
-    '2' : [],
-    '4' : ['8'],
-    '8' : []
-}
+# graph = {
+#     '5' : ['3','7'],
+#     '3' : ['2', '4'],
+#     '7' : ['8'],
+#     '2' : [],
+#     '4' : ['8'],
+#     '8' : []
+# }
+
+
+
+import takeInput
 
 visited = set() # Set to keep track of visited nodes of graph.
 
@@ -19,4 +23,5 @@ def dfs(visited, graph, node):  #function for dfs
 
 # Driver Code
 print("Following is the Depth-First Search")
-dfs(visited, graph, '5')
+dfs(visited, takeInput.graph, 0)
+print('\n',takeInput.graph)
