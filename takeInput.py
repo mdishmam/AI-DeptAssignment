@@ -1,21 +1,19 @@
-inputData = open('inputdfs.txt','r').readlines()
+inputData = open('input.txt','r').readlines()
 
 n = int(inputData[0])
 graph = {}
-for i in range(n):
+for i in range(n+1):
     graph[i] = []
 
 count = 0
 for lines in inputData[1:]:
-    # print(lines)
     a, b = lines.split()
     a, b = int(a), int(b)
-    if a == 0 and b == 0:
-        break
     graph[a].append(b)
     graph[b].append(a)
     count += 1
-
+    if a == 0 and b == 0:
+        break
 connections = inputData[count+1:]
-for connection in connections:
+
 

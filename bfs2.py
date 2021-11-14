@@ -2,21 +2,44 @@ inputData = open('input.txt','r').readlines()
 
 n = int(inputData[0])
 graph = {}
-for i in range(n+1):
-    graph[i] = []
+# for i in range(n+1):
+#     graph[i] = []
 
 count = 0
 for lines in inputData[1:]:
     a, b = lines.split()
-    a, b = int(a), int(b)
-    graph[a].append(b)
-    graph[b].append(a)
-    count += 1
-    if a == 0 and b == 0:
+    # a, b = int(a), int(b)
+    # graph[a].append(b)
+    # graph[b].append(a)
+    if a == '0' and b == '0':
         break
+    try:
+        graph[a].append(b)
+    except:
+        graph[a] = [b]
+    try:
+        graph[b].append(a)
+    except:
+        graph[b] = [a]
+    count += 1
+
 connections = inputData[count+1:]
 
 
+def bfs(visited, graph, node): #function for BFS
+    queue =[]
+    visited.append(node)
+    queue.append(node)
+
+    while queue:          # Creating loop to visit each node
+        m = queue.pop(0)
+        #print (m, end = " ")
+
+        for neighbour in graph[m]:
+            if neighbour not in visited:
+                visited.append(neighbour)
+                queue.append(neighbour)
+    return visited
 
 
 def BFS_SP(graph, start, goal):
@@ -50,15 +73,16 @@ def BFS_SP(graph, start, goal):
     return
 
 if __name__ == '__main__':
-    print(graph)
-    # for it in graph:
-    #     print(it, end=': ')
-    #     for subit in graph[it]:
-    #         print(subit, end=', ')
-    #     print('\n')
-    for connection in connections:
+    #print(graph)
+    # print(bfs([],graph, 'a'))
+    for it in graph:
+        print(it, end=': ')
+        for subit in graph[it]:
+            print(subit, end=', ')
+        print('\n', end='')
+    for connection in connections[1:]:
         a, b = connection.split()
-        a, b = int(a),int(b)
-        if a == 0 and b == 0:
+        # a, b = int(a),int(b)
+        if a == '0' and b == '0':
             break
         BFS_SP(graph, a, b)
